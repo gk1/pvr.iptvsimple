@@ -370,6 +370,7 @@ bool PVRIptvData::LoadPlayList(void)
       std::string strRadio     = "";
       std::string strDevicePre = "?device_id=";
       std::string strDeviceID  = "6999999999";
+
       // parse line
       int iColon = (int)strLine.find(':');
       int iComma = (int)strLine.rfind(',');
