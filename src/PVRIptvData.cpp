@@ -368,8 +368,6 @@ bool PVRIptvData::LoadPlayList(void)
       std::string strTvgLogo   = "";
       std::string strGroupName = "";
       std::string strRadio     = "";
-      std::string strDevicePre = "?device_id=";
-      std::string strDeviceID  = "6999999999";
 
       // parse line
       int iColon = (int)strLine.find(':');
@@ -439,6 +437,9 @@ bool PVRIptvData::LoadPlayList(void)
     } 
     else if (strLine[0] != '#')
     {
+      std::string strDevicePre = "?device_id=";
+      std::string strDeviceID  = "6999999999";
+
       PVRIptvChannel channel;
       channel.iUniqueId         = GetChannelId(tmpChannel.strChannelName.c_str(), strLine.c_str());
       channel.iChannelNumber    = iChannelNum++;
@@ -448,7 +449,7 @@ bool PVRIptvData::LoadPlayList(void)
       channel.strTvgLogo        = tmpChannel.strTvgLogo;
       channel.iTvgShift         = tmpChannel.iTvgShift;
       channel.bRadio            = tmpChannel.bRadio;
-      channel.strStreamURL      = strLine+strDevicePre+strDeviceID;
+      channel.strStreamURL      = strLine + strDevicePre + strDeviceID;
       channel.iEncryptionSystem = 0;
 
       if (iCurrentGroupId > 0) 
