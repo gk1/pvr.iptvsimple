@@ -35,6 +35,7 @@
 #define M3U_START_MARKER        "#EXTM3U"
 #define M3U_INFO_MARKER         "#EXTINF"
 #define TVG_INFO_ID_MARKER      "tvg-id="
+#define TVG_INFO_CHN_NUM_MARKER	"tvg-chn-num="
 #define TVG_INFO_NAME_MARKER    "tvg-name="
 #define TVG_INFO_LOGO_MARKER    "tvg-logo="
 #define TVG_INFO_SHIFT_MARKER   "tvg-shift="
@@ -362,6 +363,7 @@ bool PVRIptvData::LoadPlayList(void)
     {
       bool        bRadio       = false;
       double      fTvgShift    = 0;
+      double	  fChnNum      = 0;
       std::string strChnlName  = "";
       std::string strTvgId     = "";
       std::string strTvgName   = "";
@@ -389,7 +391,7 @@ bool PVRIptvData::LoadPlayList(void)
         strGroupName  = ReadMarkerValue(strInfoLine, GROUP_NAME_MARKER);
         strRadio      = ReadMarkerValue(strInfoLine, RADIO_MARKER);
         fTvgShift     = atof(ReadMarkerValue(strInfoLine, TVG_INFO_SHIFT_MARKER).c_str());
-
+	fChnNum	      = atof(ReadMarkerValue(strInfoLine, TVG_INFO_CHN_NUM_MARKER).c_str());
         if (strTvgId.empty())
         {
           char buff[255];
@@ -442,7 +444,7 @@ bool PVRIptvData::LoadPlayList(void)
 
       PVRIptvChannel channel;
       channel.iUniqueId         = GetChannelId(tmpChannel.strChannelName.c_str(), strLine.c_str());
-      channel.iChannelNumber    = iChannelNum++;
+      channel.iChannelNumber    = fChnNum;
       channel.strTvgId          = tmpChannel.strTvgId;
       channel.strChannelName    = tmpChannel.strChannelName;
       channel.strTvgName        = tmpChannel.strTvgName;
