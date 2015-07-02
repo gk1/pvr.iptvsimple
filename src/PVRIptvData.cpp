@@ -319,6 +319,7 @@ bool PVRIptvData::LoadPlayList(void)
   int iCurrentGroupId   = 0;
   int iChannelNum       = g_iStartNumber;
   int iEPGTimeShift     = 0;
+  double fChnNum	= 0;
 
   PVRIptvChannel tmpChannel;
   tmpChannel.strTvgId       = "";
@@ -363,7 +364,6 @@ bool PVRIptvData::LoadPlayList(void)
     {
       bool        bRadio       = false;
       double      fTvgShift    = 0;
-      double	  fChnNum      = 0;
       std::string strChnlName  = "";
       std::string strTvgId     = "";
       std::string strTvgName   = "";
