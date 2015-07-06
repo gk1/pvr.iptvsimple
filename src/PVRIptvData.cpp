@@ -317,7 +317,8 @@ bool PVRIptvData::LoadPlayList(void)
   int iChannelIndex     = 0;
   int iUniqueGroupId    = 0;
   int iCurrentGroupId   = 0;
-  int iChannelNum       = g_iStartNumber;
+//  int iChannelNum       = g_iStartNumber;
+  int iChannelNum       = 0;
   int iEPGTimeShift     = 0;
   double fChnNum	= 0;
 
