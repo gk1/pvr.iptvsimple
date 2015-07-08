@@ -454,6 +454,7 @@ bool PVRIptvData::LoadPlayList(void)
       channel.bRadio            = tmpChannel.bRadio;
       channel.strStreamURL      = strLine + strDevicePre + strDeviceID;
       channel.iEncryptionSystem = 0;
+      XBMC->Log(LOG_ERROR,"Adding Channel %s, ChanNum: %d, Index: %d",tmpChannel.strChannelName,fChnNum,iChannelIndex);
 
       if (iCurrentGroupId > 0) 
       {
