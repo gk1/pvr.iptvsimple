@@ -27,6 +27,7 @@
 #include <fstream>
 #include <map>
 #include <stdexcept>
+#include <stdio.h>
 #include "zlib.h"
 #include "rapidxml/rapidxml.hpp"
 #include "PVRIptvData.h"
@@ -440,6 +441,14 @@ bool PVRIptvData::LoadPlayList(void)
     } 
     else if (strLine[0] != '#')
     {
+      char str [80];
+      FILE * pFile;
+
+      pFile=fopen("/sys/class/net/eth0/address","r");
+      fscanf(pFile,"%s",str);
+      fclose(pFile);
+      XBMC-Log(LOG_ERROR,"Mac address for eth0 is: %s",str);
+
       std::string strDevicePre = "?device_id=";
       std::string strDeviceID  = "6999999999";
 
