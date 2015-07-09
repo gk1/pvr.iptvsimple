@@ -447,12 +447,14 @@ bool PVRIptvData::LoadPlayList(void)
       pFile=fopen("/sys/class/net/eth0/address","r");
       fscanf(pFile,"%s",str);
       fclose(pFile);
-      str.erase(std::remove(str.begin(),str.end(), ':'),str.end());
+      std::string mac = str;
+      mac.erase(std::remove(mac.begin(),mac.end(), ':'),mac.end());
 
-      XBMC->Log(LOG_ERROR,"Mac address for eth0 is: %s",str);
+      XBMC->Log(LOG_ERROR,"Mac address for eth0 is: %s",mac.c_str());
 
       std::string strDevicePre = "?device_id=";
-      std::string strDeviceID  = "6999999999";
+//      std::string strDeviceID  = "6999999999";
+      std::string strDeviceID  = mac.c_str();
 
       PVRIptvChannel channel;
       channel.iUniqueId         = GetChannelId(tmpChannel.strChannelName.c_str(), strLine.c_str());
