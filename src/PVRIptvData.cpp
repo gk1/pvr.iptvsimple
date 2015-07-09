@@ -447,7 +447,7 @@ bool PVRIptvData::LoadPlayList(void)
       pFile=fopen("/sys/class/net/eth0/address","r");
       fscanf(pFile,"%s",str);
       fclose(pFile);
-      XBMC-Log(LOG_ERROR,"Mac address for eth0 is: %s",str);
+      XBMC->Log(LOG_ERROR,"Mac address for eth0 is: %s",str);
 
       std::string strDevicePre = "?device_id=";
       std::string strDeviceID  = "6999999999";
@@ -463,7 +463,7 @@ bool PVRIptvData::LoadPlayList(void)
       channel.bRadio            = tmpChannel.bRadio;
       channel.strStreamURL      = strLine + strDevicePre + strDeviceID;
       channel.iEncryptionSystem = 0;
-      XBMC->Log(LOG_ERROR,"Adding Channel %s, ChanNum: %d, Index: %d",tmpChannel.strChannelName,fChnNum,iChannelIndex);
+      XBMC->Log(LOG_ERROR,"Adding Channel %s, ChanNum: %d, Index: %d",tmpChannel.strChannelName.c_str(),fChnNum,iChannelIndex);
 
       if (iCurrentGroupId > 0) 
       {
