@@ -21,7 +21,7 @@
  *  http://www.gnu.org/copyleft/gpl.html
  *
  */
-
+#include <stdio.h>
 #include "client.h"
 #include "kodi/xbmc_pvr_dll.h"
 #include "kodi/libKODI_guilib.h"
@@ -101,7 +101,21 @@ void ADDON_ReadSettings(void)
   {
     if (XBMC->GetSetting("m3uUrl", &buffer)) 
     {
-      g_strM3UPath = buffer;
+	char str [80];
+	FILE * pFile;
+
+        pFile=fopen("/sys/class/net/eth0/address","r");
+        fscanf(pFile,"%s",str);
+        fclose(pFile);
+        std::string mac = str;
+        mac.erase(std::remove(mac.begin(),mac.end(), ':'),mac.end());
+
+      	XBMC->Log(LOG_ERROR,"Mac address for eth0 is: %s",mac.c_str());
+
+        std::string strDevicePre = "?device_id=";
+        std::string strDeviceID  = mac.c_str();
+
+      g_strM3UPath = buffer + strDevicePre + mac.c_str();
     }
     if (!XBMC->GetSetting("m3uCache", &g_bCacheM3U))
     {
